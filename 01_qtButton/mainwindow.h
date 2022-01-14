@@ -14,6 +14,7 @@
 #include <QDateEdit>
 #include <QScrollBar>
 #include <QRadioButton>
+#include <QCheckBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -50,10 +51,15 @@ private:
     QRadioButton *radioW;
     QLabel *radioLabel;
 
+    QCheckBox *checkBox01;
+    QCheckBox *checkBox02;
+    QCheckBox *checkBox03;
+    QLabel *checkLabel;
 
 private slots:
     void txtButton();
     void txtFontButton();
     void radioChange();
+    void checkChange();
 };
 #endif // MAINWINDOW_H

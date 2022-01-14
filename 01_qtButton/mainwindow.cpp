@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QDateTime>
+#include <QString>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -87,6 +88,21 @@ MainWindow::MainWindow(QWidget *parent)
     connect(radioM, SIGNAL(clicked()), this, SLOT(radioChange()));
     connect(radioW, SIGNAL(clicked()), this, SLOT(radioChange()));
 
+    checkBox01 = new QCheckBox(this);
+    checkBox02 = new QCheckBox(this);
+    checkBox03 = new QCheckBox(this);
+    checkLabel = new QLabel(this);
+    checkBox01->setGeometry(QRect(400, 450, 50, 50));
+    checkBox02->setGeometry(QRect(450, 450, 50, 50));
+    checkBox03->setGeometry(QRect(500, 450, 50, 50));
+    checkLabel->setGeometry(QRect(400, 500, 200, 30));
+    checkBox01->setText("math");
+    checkBox02->setText("eng");
+    checkBox03->setText("geo");
+    connect(checkBox01, SIGNAL(clicked(bool)), this, SLOT(checkChange()));
+    connect(checkBox02, SIGNAL(clicked(bool)), this, SLOT(checkChange()));
+    connect(checkBox03, SIGNAL(clicked(bool)), this, SLOT(checkChange()));
+
 }
 
 MainWindow::~MainWindow()
@@ -112,5 +128,35 @@ void MainWindow::radioChange()
     } else if(sender() == radioW) {
         radioLabel->setText("girl");
     }
+}
+
+QString str;
+
+void MainWindow::checkChange()
+{
+    if(sender() == checkBox01)
+    {
+        if(checkBox01->checkState() == Qt::Checked)
+        {
+            str +="math";
+        } else {
+            str = str.replace(QString("math"), QString(""));
+        }
+    }else if(sender() == checkBox02) {
+        if(checkBox02->checkState() == Qt::Checked)
+        {
+            str +="eng";
+        } else {
+            str = str.replace(QString("eng"), QString(""));
+        }
+    }else if(sender() == checkBox03) {
+        if(checkBox03->checkState() == Qt::Checked)
+        {
+            str +="geo";
+        } else {
+            str = str.replace(QString("geo"), QString(""));
+        }
+    }
+    checkLabel->setText(str);
 }
 
