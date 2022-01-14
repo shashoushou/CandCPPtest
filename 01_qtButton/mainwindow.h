@@ -10,6 +10,7 @@
 #include <QComboBox>
 #include <QFontComboBox>
 #include <QSpinBox>
+#include <QTimeEdit>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,6 +38,8 @@ private:
     QLabel *fontLabel;
 
     QSpinBox *spinBox;
+    QTimeEdit *timeEdit;
+
 
 private slots:
     void txtButton();

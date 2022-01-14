@@ -50,6 +50,12 @@ MainWindow::MainWindow(QWidget *parent)
     spinBox->setSuffix("  Yu");
     spinBox->setPrefix("$ ");
 
+    timeEdit = new QTimeEdit(this);
+    timeEdit->setGeometry(QRect(400, 150,200, 25));
+    QDateTime sysTime = QDateTime::currentDateTime();
+    QStringList list = sysTime.toString("hh:mm:ss").split(':');
+    timeEdit->setTime(QTime(list[0].toUInt(), list[1].toInt(), list[2].toInt()));
+    //timeEdit->setDisplayFormat(timeEdit->locale().dateFormat()+"HH:mm:ss");
 }
 
 MainWindow::~MainWindow()
