@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QTextEdit>
+#include <QPlainTextEdit>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,6 +26,7 @@ private:
     QLabel *label;
     QLineEdit *lineEdit;
     QTextEdit *textEdit;
+    QPlainTextEdit *plainTextEdit;
 
 private slots:
     void txtButton();

@@ -24,7 +24,9 @@ MainWindow::MainWindow(QWidget *parent)
     textEdit->setGeometry(QRect(100,250,200,150));
     textEdit->setText("Line one<br/>Line two");
 
-
+    plainTextEdit = new QPlainTextEdit(this);
+    plainTextEdit->setGeometry(QRect(100,300,200,100));
+    plainTextEdit->setPlainText("Line one");
 }
 
 MainWindow::~MainWindow()
