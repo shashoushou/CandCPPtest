@@ -64,6 +64,17 @@ MainWindow::MainWindow(QWidget *parent)
     QStringList list2 = sysTime.toString("yyyy-MM-dd").split('-');
     dateEdit->setDate(QDate(list2[0].toInt(),list2[1].toUInt(), list2[2].toUInt()));
 
+    scrollBar = new QScrollBar(this);
+    spinBox2 = new QSpinBox(this);
+    scrollBar->setOrientation(Qt::Horizontal);
+    scrollBar->setGeometry(QRect(400,250, 200, 20));
+    spinBox2->setGeometry(QRect(400, 300, 100, 25));
+    scrollBar->setPageStep(10);
+    connect(scrollBar,SIGNAL(valueChanged(int)),spinBox2,SLOT(setValue(int)));
+    connect(spinBox2,SIGNAL(valueChanged(int)),scrollBar,SLOT(setValue(int)));
+
+    scrollBar->setValue(50);
+
 }
 
 MainWindow::~MainWindow()
