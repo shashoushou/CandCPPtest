@@ -27,6 +27,22 @@ MainWindow::MainWindow(QWidget *parent)
     plainTextEdit = new QPlainTextEdit(this);
     plainTextEdit->setGeometry(QRect(100,300,200,100));
     plainTextEdit->setPlainText("Line one");
+
+    comboBox = new QComboBox(this);
+    comboBox->setGeometry(QRect(100,450,120,25));
+    QStringList str;
+    str <<"math"<<"eng"<<"geo";
+    comboBox->addItems(str);
+
+    fontComboBox = new QFontComboBox(this);
+    fontButton = new QPushButton(this);
+    fontLabel = new QLabel(this);
+    fontLabel->setGeometry(QRect(400,100,300,25));
+    fontButton->setText("Button");
+    fontButton->move(650,50);
+    connect(fontButton, SIGNAL(released()), this, SLOT(txtFontButton()));
+    fontComboBox->setGeometry(QRect(400, 50,200,25));
+
 }
 
 MainWindow::~MainWindow()
@@ -37,5 +53,10 @@ MainWindow::~MainWindow()
 void MainWindow::txtButton()
 {
     button->setText("Button B");
+}
+
+void MainWindow::txtFontButton()
+{
+    fontLabel->setText("Select font: "+fontComboBox->currentText());
 }
 

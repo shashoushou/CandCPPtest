@@ -7,6 +7,8 @@
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QPlainTextEdit>
+#include <QComboBox>
+#include <QFontComboBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,8 +29,14 @@ private:
     QLineEdit *lineEdit;
     QTextEdit *textEdit;
     QPlainTextEdit *plainTextEdit;
+    QComboBox *comboBox;
+
+    QFontComboBox *fontComboBox;
+    QPushButton *fontButton;
+    QLabel *fontLabel;
 
 private slots:
     void txtButton();
+    void txtFontButton();
 };
 #endif // MAINWINDOW_H
