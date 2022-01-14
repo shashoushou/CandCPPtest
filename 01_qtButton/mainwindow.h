@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QPushButton>
+#include <QLabel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,6 +20,7 @@ public:
 private:
     Ui::MainWindow *ui;
     QPushButton *button;
+    QLabel *label;
 
 private slots:
     void txtButton();
