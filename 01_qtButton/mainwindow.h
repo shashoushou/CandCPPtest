@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QLabel>
+#include <QLineEdit>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,6 +22,7 @@ private:
     Ui::MainWindow *ui;
     QPushButton *button;
     QLabel *label;
+    QLineEdit *lineEdit;
 
 private slots:
     void txtButton();
