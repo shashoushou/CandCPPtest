@@ -72,8 +72,20 @@ MainWindow::MainWindow(QWidget *parent)
     scrollBar->setPageStep(10);
     connect(scrollBar,SIGNAL(valueChanged(int)),spinBox2,SLOT(setValue(int)));
     connect(spinBox2,SIGNAL(valueChanged(int)),scrollBar,SLOT(setValue(int)));
-
     scrollBar->setValue(50);
+
+    radioM = new QRadioButton(this);
+    radioW = new QRadioButton(this);
+    radioLabel = new QLabel(this);
+    radioM->setGeometry(QRect(400, 350, 50, 50));
+    radioW->setGeometry(QRect(500, 350, 50, 50));
+    radioLabel->setGeometry(QRect(400, 400, 100, 25));
+    radioM->setText("boy");
+    radioW->setText("girl");
+    radioM->setChecked(true);
+    radioLabel->setText("boy");
+    connect(radioM, SIGNAL(clicked()), this, SLOT(radioChange()));
+    connect(radioW, SIGNAL(clicked()), this, SLOT(radioChange()));
 
 }
 
@@ -90,5 +102,15 @@ void MainWindow::txtButton()
 void MainWindow::txtFontButton()
 {
     fontLabel->setText("Select font: "+fontComboBox->currentText());
+}
+
+void MainWindow::radioChange()
+{
+    if(sender() == radioM)
+    {
+        radioLabel->setText("boy");
+    } else if(sender() == radioW) {
+        radioLabel->setText("girl");
+    }
 }
 

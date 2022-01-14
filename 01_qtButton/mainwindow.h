@@ -13,6 +13,7 @@
 #include <QTimeEdit>
 #include <QDateEdit>
 #include <QScrollBar>
+#include <QRadioButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -45,9 +46,14 @@ private:
 
     QScrollBar *scrollBar;
     QSpinBox *spinBox2;
+    QRadioButton *radioM;
+    QRadioButton *radioW;
+    QLabel *radioLabel;
+
 
 private slots:
     void txtButton();
     void txtFontButton();
+    void radioChange();
 };
 #endif // MAINWINDOW_H
