@@ -43,6 +43,13 @@ MainWindow::MainWindow(QWidget *parent)
     connect(fontButton, SIGNAL(released()), this, SLOT(txtFontButton()));
     fontComboBox->setGeometry(QRect(400, 50,200,25));
 
+    spinBox = new QSpinBox(this);
+    spinBox->setGeometry(QRect(400, 100, 100, 25));
+    spinBox->setRange(0,200);
+    spinBox->setValue(10);
+    spinBox->setSuffix("  Yu");
+    spinBox->setPrefix("$ ");
+
 }
 
 MainWindow::~MainWindow()
