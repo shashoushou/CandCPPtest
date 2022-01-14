@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QDateTime>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -50,12 +52,18 @@ MainWindow::MainWindow(QWidget *parent)
     spinBox->setSuffix("  Yu");
     spinBox->setPrefix("$ ");
 
-    timeEdit = new QTimeEdit(this);
-    timeEdit->setGeometry(QRect(400, 150,200, 25));
     QDateTime sysTime = QDateTime::currentDateTime();
     QStringList list = sysTime.toString("hh:mm:ss").split(':');
+    timeEdit = new QTimeEdit(this);
+    timeEdit->setGeometry(QRect(400, 150,200, 25));
     timeEdit->setTime(QTime(list[0].toUInt(), list[1].toInt(), list[2].toInt()));
     //timeEdit->setDisplayFormat(timeEdit->locale().dateFormat()+"HH:mm:ss");
+
+    dateEdit = new QDateEdit(this);
+    dateEdit->setGeometry(QRect(400,200, 200, 25));
+    QStringList list2 = sysTime.toString("yyyy-MM-dd").split('-');
+    dateEdit->setDate(QDate(list2[0].toInt(),list2[1].toUInt(), list2[2].toUInt()));
+
 }
 
 MainWindow::~MainWindow()

@@ -11,6 +11,7 @@
 #include <QFontComboBox>
 #include <QSpinBox>
 #include <QTimeEdit>
+#include <QDateEdit>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -39,7 +40,7 @@ private:
 
     QSpinBox *spinBox;
     QTimeEdit *timeEdit;
-
+    QDateEdit *dateEdit;
 
 private slots:
     void txtButton();
