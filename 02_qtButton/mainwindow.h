@@ -8,6 +8,8 @@
 #include <QTreeView>
 #include <QStandardItemModel>
 
+#include <QTableView>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -27,6 +29,10 @@ private:
 
     QTreeView *treeView;
     QStandardItemModel *model2;
+
+    QTableView *tableView;
+    QStandardItemModel *model3;
+
 
 };
 #endif // MAINWINDOW_H

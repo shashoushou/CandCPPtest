@@ -32,6 +32,21 @@ MainWindow::MainWindow(QWidget *parent)
     model2->setItem(2, 0, item3);
     treeView->setModel(model2);
 
+    tableView = new QTableView(this);
+    tableView->setGeometry(QRect(200,50,310,200));
+    model3 = new QStandardItemModel();
+    model3->setHorizontalHeaderItem(0, new QStandardItem("math"));
+    model3->setHorizontalHeaderItem(1, new QStandardItem("eng"));
+    model3->setHorizontalHeaderItem(2, new QStandardItem("geo"));
+    model3->setItem(0,0,new QStandardItem("math A"));
+    model3->setItem(0,1,new QStandardItem("eng A"));
+    model3->setItem(0,2,new QStandardItem("geo A"));
+    model3->setItem(1,0,new QStandardItem("math B"));
+    model3->setItem(1,1,new QStandardItem("eng B"));
+    model3->setItem(1,2,new QStandardItem("geo B"));
+    tableView->setModel(model3);
+
+
 }
 
 MainWindow::~MainWindow()
