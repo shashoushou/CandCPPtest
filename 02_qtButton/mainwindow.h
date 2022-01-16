@@ -10,6 +10,11 @@
 
 #include <QTableView>
 
+#include <QHBoxLayout>
+#include <QPushButton>
+#include <QWidget>
+#include <QGridLayout>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -32,6 +37,18 @@ private:
 
     QTableView *tableView;
     QStandardItemModel *model3;
+
+    QHBoxLayout *hboxLayout;
+    QPushButton *button1;
+    QPushButton *button2;
+    QPushButton *button3;
+    QWidget *widget;
+
+    QGridLayout *gridLayout;
+    QPushButton *button4;
+    QPushButton *button5;
+    QPushButton *button6;
+    QWidget *widget2;
 
 
 };
