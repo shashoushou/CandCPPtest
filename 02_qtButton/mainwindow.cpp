@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QMessageBox>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -46,6 +48,42 @@ MainWindow::MainWindow(QWidget *parent)
     model3->setItem(1,2,new QStandardItem("geo B"));
     tableView->setModel(model3);
 
+    fileMenu = new QMenu(this);
+    editMenu = new QMenu(this);
+    helpMenu = new QMenu(this);
+    newAct = new QAction(QIcon("/image/new"), tr("new"), this);
+    newAct->setShortcut(tr("Ctrl+N"));
+    newAct->setStatusTip(tr("add new file"));
+    connect(newAct, SIGNAL(triggered()), this, SLOT(newFile()));
+    cutAct = new QAction(QIcon("/image/cute"), tr("cute"), this);
+    cutAct->setShortcut(tr("Ctrl+X"));
+    cutAct->setStatusTip(tr("cute content"));
+    copyAct = new QAction(QIcon("/image/copy"), tr("copy"), this);
+    copyAct->setShortcut(tr("Ctrl+C"));
+    copyAct->setStatusTip(tr("copy content"));
+    pastAct = new QAction(QIcon("/image/past"), tr("past"), this);
+    pastAct->setShortcut(tr("Ctrl+P"));
+    pastAct->setStatusTip(tr("past content"));
+    aboutQtAct = new QAction(tr("about Qt"), this);
+    aboutQtAct->setStatusTip(tr("about Qt"));
+    connect(aboutQtAct, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+    fileMenu = menuBar()->addMenu(tr("Document"));
+    fileMenu->addAction(newAct);
+    fileMenu->addSeparator();
+    editMenu = menuBar()->addMenu(tr("Edit"));
+    editMenu->addAction(cutAct);
+    editMenu->addAction(copyAct);
+    editMenu->addAction(pastAct);
+    editMenu->addSeparator();
+    helpMenu = menuBar()->addMenu(tr("Help"));
+    helpMenu->addAction(aboutQtAct);
+    fileToolBar = addToolBar(tr("new"));
+    fileToolBar->addAction(newAct);
+    editToolBar = addToolBar(tr("Edit"));
+    editToolBar->addAction(cutAct);
+    editToolBar->addAction(copyAct);
+    editToolBar->addAction(pastAct);
+
     hlBtn = new QPushButton(this);
     hlBtn->setText("open w2");
     hlBtn->setGeometry(QRect(300,300,200,50));
@@ -82,6 +120,14 @@ void MainWindow::openW()
        w4.show();
    else if(sender() == twBtn)
        w5.show();
+}
+
+void MainWindow::newFile()
+{
+    QMessageBox::warning(this, tr("Warning"),
+                         tr("add new file?"),
+                         QMessageBox::Yes | QMessageBox::Default,
+                         QMessageBox::No);
 }
 
 

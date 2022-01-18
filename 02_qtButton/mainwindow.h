@@ -14,6 +14,11 @@
 #include "mainwindow4.h"
 #include "tabwidget.h"
 
+#include <QMenu>
+#include <QMenuBar>
+#include <QAction>
+#include <QToolBar>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -37,6 +42,14 @@ private:
     QTableView *tableView;
     QStandardItemModel *model3;
 
+    QMenu *fileMenu, *editMenu, *helpMenu;
+    QToolBar *fileToolBar, *editToolBar;
+    QAction *newAct;
+    QAction *cutAct;
+    QAction *copyAct;
+    QAction *pastAct;
+    QAction *aboutQtAct;
+
     QPushButton *hlBtn;
     MainWindow2 w2;
 
@@ -51,6 +64,7 @@ private:
 
 private slots:
     void openW();
+    void newFile();
 
 };
 #endif // MAINWINH
