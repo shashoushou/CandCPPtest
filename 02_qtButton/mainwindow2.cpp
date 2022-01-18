@@ -18,9 +18,49 @@ MainWindow2::MainWindow2(QWidget *parent) :
     widget = new QWidget();
     widget->setLayout(hboxLayout);
     this->setCentralWidget(widget);
+
+    createMenu();
+    if(!QSystemTrayIcon::isSystemTrayAvailable())
+    {
+        return;
+    }
+    myTrayIcon = new QSystemTrayIcon(this);
+    myTrayIcon->setIcon(QIcon(":/new/prefix/ico"));
+    myTrayIcon->setToolTip("Qt Tray Icon");
+    myTrayIcon->showMessage("Tray", "Tray managent", QSystemTrayIcon::Information, 10000);
+    myTrayIcon->setContextMenu(myMenu);
+    myTrayIcon->show();
 }
 
 MainWindow2::~MainWindow2()
 {
     delete ui;
+}
+
+void MainWindow2::createMenu()
+{
+    restoreWinAction = new QAction("Restore(&R)", this);
+    quitAction = new QAction("Exit(&Q)", this);
+
+    connect(restoreWinAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    connect(quitAction,SIGNAL(triggered()), qApp, SLOT(quit()));
+
+    myMenu = new QMenu((QWidget*)QApplication::desktop());
+    myMenu->addAction(restoreWinAction);
+    myMenu->addSeparator();
+    myMenu->addAction(quitAction);
+
+}
+
+void MainWindow2::showNormal()
+{
+    this->show();
+}
+
+void QWidget::changeEvent(QEvent *e)
+{
+    if((e->type() == QEvent::WindowStateChange) && this->isMinimized())
+    {
+        this->hide();
+    }
 }

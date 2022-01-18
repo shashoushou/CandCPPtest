@@ -5,6 +5,8 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QWidget>
+#include <QSystemTrayIcon>
+#include <QMenu>
 
 namespace Ui {
 class MainWindow2;
@@ -25,6 +27,15 @@ private:
     QPushButton *button2;
     QPushButton *button3;
     QWidget *widget;
+
+    QSystemTrayIcon *myTrayIcon;
+    QMenu *myMenu;
+    QAction *restoreWinAction;
+    QAction *quitAction;
+    void createMenu();
+
+private slots:
+    void showNormal();
 };
 
 #endif // MAINWINDOW2_H
