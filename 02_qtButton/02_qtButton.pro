@@ -20,19 +20,22 @@ SOURCES += \
     mainwindow.cpp \
     mainwindow2.cpp \
     mainwindow3.cpp \
-    mainwindow4.cpp
+    mainwindow4.cpp \
+    tabwidget.cpp
 
 HEADERS += \
     mainwindow.h \
     mainwindow2.h \
     mainwindow3.h \
-    mainwindow4.h
+    mainwindow4.h \
+    tabwidget.h
 
 FORMS += \
     mainwindow.ui \
     mainwindow2.ui \
     mainwindow3.ui \
-    mainwindow4.ui
+    mainwindow4.ui \
+    tabwidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

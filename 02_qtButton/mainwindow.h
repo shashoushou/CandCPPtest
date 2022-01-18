@@ -12,6 +12,7 @@
 #include "mainwindow2.h"
 #include "mainwindow3.h"
 #include "mainwindow4.h"
+#include "tabwidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -45,8 +46,11 @@ private:
     QPushButton *gbBtn;
     MainWindow4 w4;
 
+    QPushButton *twBtn;
+    tabWidget w5;
+
 private slots:
     void openW();
 
 };
-#endif // MAINWINDOW_H
+#endif // MAINWINH

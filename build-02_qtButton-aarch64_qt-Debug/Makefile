@@ -56,19 +56,23 @@ SOURCES       = ../02_qtButton/main.cpp \
 		../02_qtButton/mainwindow.cpp \
 		../02_qtButton/mainwindow2.cpp \
 		../02_qtButton/mainwindow3.cpp \
-		../02_qtButton/mainwindow4.cpp moc_mainwindow.cpp \
+		../02_qtButton/mainwindow4.cpp \
+		../02_qtButton/tabwidget.cpp moc_mainwindow.cpp \
 		moc_mainwindow2.cpp \
 		moc_mainwindow3.cpp \
-		moc_mainwindow4.cpp
+		moc_mainwindow4.cpp \
+		moc_tabwidget.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		mainwindow2.o \
 		mainwindow3.o \
 		mainwindow4.o \
+		tabwidget.o \
 		moc_mainwindow.o \
 		moc_mainwindow2.o \
 		moc_mainwindow3.o \
-		moc_mainwindow4.o
+		moc_mainwindow4.o \
+		moc_tabwidget.o
 DIST          = /opt/aarch64-qt/mkspecs/features/spec_pre.prf \
 		/opt/aarch64-qt/mkspecs/common/unix.conf \
 		/opt/aarch64-qt/mkspecs/common/linux.conf \
@@ -214,11 +218,13 @@ DIST          = /opt/aarch64-qt/mkspecs/features/spec_pre.prf \
 		../02_qtButton/02_qtButton.pro ../02_qtButton/mainwindow.h \
 		../02_qtButton/mainwindow2.h \
 		../02_qtButton/mainwindow3.h \
-		../02_qtButton/mainwindow4.h ../02_qtButton/main.cpp \
+		../02_qtButton/mainwindow4.h \
+		../02_qtButton/tabwidget.h ../02_qtButton/main.cpp \
 		../02_qtButton/mainwindow.cpp \
 		../02_qtButton/mainwindow2.cpp \
 		../02_qtButton/mainwindow3.cpp \
-		../02_qtButton/mainwindow4.cpp
+		../02_qtButton/mainwindow4.cpp \
+		../02_qtButton/tabwidget.cpp
 QMAKE_TARGET  = 02_qtButton
 DESTDIR       = 
 TARGET        = 02_qtButton
@@ -227,7 +233,7 @@ TARGET        = 02_qtButton
 first: all
 ####### Build rules
 
-02_qtButton: ui_mainwindow.h ui_mainwindow2.h ui_mainwindow3.h ui_mainwindow4.h $(OBJECTS)  
+02_qtButton: ui_mainwindow.h ui_mainwindow2.h ui_mainwindow3.h ui_mainwindow4.h ui_tabwidget.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../02_qtButton/02_qtButton.pro /opt/aarch64-qt/mkspecs/linux-aarch64-gnu-g++/qmake.conf /opt/aarch64-qt/mkspecs/features/spec_pre.prf \
@@ -532,9 +538,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /opt/aarch64-qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../02_qtButton/mainwindow.h ../02_qtButton/mainwindow2.h ../02_qtButton/mainwindow3.h ../02_qtButton/mainwindow4.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../02_qtButton/main.cpp ../02_qtButton/mainwindow.cpp ../02_qtButton/mainwindow2.cpp ../02_qtButton/mainwindow3.cpp ../02_qtButton/mainwindow4.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../02_qtButton/mainwindow.ui ../02_qtButton/mainwindow2.ui ../02_qtButton/mainwindow3.ui ../02_qtButton/mainwindow4.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../02_qtButton/mainwindow.h ../02_qtButton/mainwindow2.h ../02_qtButton/mainwindow3.h ../02_qtButton/mainwindow4.h ../02_qtButton/tabwidget.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../02_qtButton/main.cpp ../02_qtButton/mainwindow.cpp ../02_qtButton/mainwindow2.cpp ../02_qtButton/mainwindow3.cpp ../02_qtButton/mainwindow4.cpp ../02_qtButton/tabwidget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../02_qtButton/mainwindow.ui ../02_qtButton/mainwindow2.ui ../02_qtButton/mainwindow3.ui ../02_qtButton/mainwindow4.ui ../02_qtButton/tabwidget.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -566,9 +572,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /opt/aarch64-qt/mkspecs/features/data/dummy.cpp
 	aarch64-linux-gnu-g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /opt/aarch64-qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_mainwindow2.cpp moc_mainwindow3.cpp moc_mainwindow4.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_mainwindow2.cpp moc_mainwindow3.cpp moc_mainwindow4.cpp moc_tabwidget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_mainwindow2.cpp moc_mainwindow3.cpp moc_mainwindow4.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_mainwindow2.cpp moc_mainwindow3.cpp moc_mainwindow4.cpp moc_tabwidget.cpp
 moc_mainwindow.cpp: ../02_qtButton/mainwindow.h \
 		/opt/aarch64-qt/include/QtWidgets/QMainWindow \
 		/opt/aarch64-qt/include/QtWidgets/qmainwindow.h \
@@ -717,6 +723,9 @@ moc_mainwindow.cpp: ../02_qtButton/mainwindow.h \
 		/opt/aarch64-qt/include/QtWidgets/QGroupBox \
 		/opt/aarch64-qt/include/QtWidgets/qgroupbox.h \
 		/opt/aarch64-qt/include/QtWidgets/QVBoxLayout \
+		../02_qtButton/tabwidget.h \
+		/opt/aarch64-qt/include/QtWidgets/QTableWidget \
+		/opt/aarch64-qt/include/QtWidgets/qtablewidget.h \
 		moc_predefs.h \
 		/opt/aarch64-qt/bin/moc
 	/opt/aarch64-qt/bin/moc $(DEFINES) --include /bk/work/CandCPPtest/build-02_qtButton-aarch64_qt-Debug/moc_predefs.h -I/opt/aarch64-qt/mkspecs/linux-aarch64-gnu-g++ -I/bk/work/CandCPPtest/02_qtButton -I/opt/aarch64-qt/include -I/opt/aarch64-qt/include/QtWidgets -I/opt/aarch64-qt/include/QtGui -I/opt/aarch64-qt/include/QtCore -I. -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include/c++/5.5.0 -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include/c++/5.5.0/aarch64-linux-gnu -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include/c++/5.5.0/backward -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/lib/gcc/aarch64-linux-gnu/5.5.0/include -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/lib/gcc/aarch64-linux-gnu/5.5.0/include-fixed -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/libc/usr/include ../02_qtButton/mainwindow.h -o moc_mainwindow.cpp
@@ -1071,6 +1080,9 @@ moc_mainwindow4.cpp: ../02_qtButton/mainwindow4.h \
 		/opt/aarch64-qt/include/QtWidgets/QGroupBox \
 		/opt/aarch64-qt/include/QtWidgets/qgroupbox.h \
 		/opt/aarch64-qt/include/QtWidgets/qframe.h \
+		/opt/aarch64-qt/include/QtWidgets/QPushButton \
+		/opt/aarch64-qt/include/QtWidgets/qpushbutton.h \
+		/opt/aarch64-qt/include/QtWidgets/qabstractbutton.h \
 		/opt/aarch64-qt/include/QtWidgets/QVBoxLayout \
 		/opt/aarch64-qt/include/QtWidgets/qboxlayout.h \
 		/opt/aarch64-qt/include/QtWidgets/qlayout.h \
@@ -1080,13 +1092,142 @@ moc_mainwindow4.cpp: ../02_qtButton/mainwindow4.h \
 		/opt/aarch64-qt/bin/moc
 	/opt/aarch64-qt/bin/moc $(DEFINES) --include /bk/work/CandCPPtest/build-02_qtButton-aarch64_qt-Debug/moc_predefs.h -I/opt/aarch64-qt/mkspecs/linux-aarch64-gnu-g++ -I/bk/work/CandCPPtest/02_qtButton -I/opt/aarch64-qt/include -I/opt/aarch64-qt/include/QtWidgets -I/opt/aarch64-qt/include/QtGui -I/opt/aarch64-qt/include/QtCore -I. -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include/c++/5.5.0 -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include/c++/5.5.0/aarch64-linux-gnu -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include/c++/5.5.0/backward -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/lib/gcc/aarch64-linux-gnu/5.5.0/include -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/lib/gcc/aarch64-linux-gnu/5.5.0/include-fixed -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/libc/usr/include ../02_qtButton/mainwindow4.h -o moc_mainwindow4.cpp
 
+moc_tabwidget.cpp: ../02_qtButton/tabwidget.h \
+		/opt/aarch64-qt/include/QtWidgets/QMainWindow \
+		/opt/aarch64-qt/include/QtWidgets/qmainwindow.h \
+		/opt/aarch64-qt/include/QtWidgets/qtwidgetsglobal.h \
+		/opt/aarch64-qt/include/QtGui/qtguiglobal.h \
+		/opt/aarch64-qt/include/QtCore/qglobal.h \
+		/opt/aarch64-qt/include/QtCore/qconfig-bootstrapped.h \
+		/opt/aarch64-qt/include/QtCore/qconfig.h \
+		/opt/aarch64-qt/include/QtCore/qtcore-config.h \
+		/opt/aarch64-qt/include/QtCore/qsystemdetection.h \
+		/opt/aarch64-qt/include/QtCore/qprocessordetection.h \
+		/opt/aarch64-qt/include/QtCore/qcompilerdetection.h \
+		/opt/aarch64-qt/include/QtCore/qtypeinfo.h \
+		/opt/aarch64-qt/include/QtCore/qsysinfo.h \
+		/opt/aarch64-qt/include/QtCore/qlogging.h \
+		/opt/aarch64-qt/include/QtCore/qflags.h \
+		/opt/aarch64-qt/include/QtCore/qatomic.h \
+		/opt/aarch64-qt/include/QtCore/qbasicatomic.h \
+		/opt/aarch64-qt/include/QtCore/qatomic_bootstrap.h \
+		/opt/aarch64-qt/include/QtCore/qgenericatomic.h \
+		/opt/aarch64-qt/include/QtCore/qatomic_cxx11.h \
+		/opt/aarch64-qt/include/QtCore/qatomic_msvc.h \
+		/opt/aarch64-qt/include/QtCore/qglobalstatic.h \
+		/opt/aarch64-qt/include/QtCore/qmutex.h \
+		/opt/aarch64-qt/include/QtCore/qnumeric.h \
+		/opt/aarch64-qt/include/QtCore/qversiontagging.h \
+		/opt/aarch64-qt/include/QtGui/qtgui-config.h \
+		/opt/aarch64-qt/include/QtWidgets/qtwidgets-config.h \
+		/opt/aarch64-qt/include/QtWidgets/qwidget.h \
+		/opt/aarch64-qt/include/QtGui/qwindowdefs.h \
+		/opt/aarch64-qt/include/QtCore/qobjectdefs.h \
+		/opt/aarch64-qt/include/QtCore/qnamespace.h \
+		/opt/aarch64-qt/include/QtCore/qobjectdefs_impl.h \
+		/opt/aarch64-qt/include/QtGui/qwindowdefs_win.h \
+		/opt/aarch64-qt/include/QtCore/qobject.h \
+		/opt/aarch64-qt/include/QtCore/qstring.h \
+		/opt/aarch64-qt/include/QtCore/qchar.h \
+		/opt/aarch64-qt/include/QtCore/qbytearray.h \
+		/opt/aarch64-qt/include/QtCore/qrefcount.h \
+		/opt/aarch64-qt/include/QtCore/qarraydata.h \
+		/opt/aarch64-qt/include/QtCore/qstringliteral.h \
+		/opt/aarch64-qt/include/QtCore/qstringalgorithms.h \
+		/opt/aarch64-qt/include/QtCore/qstringview.h \
+		/opt/aarch64-qt/include/QtCore/qstringbuilder.h \
+		/opt/aarch64-qt/include/QtCore/qlist.h \
+		/opt/aarch64-qt/include/QtCore/qalgorithms.h \
+		/opt/aarch64-qt/include/QtCore/qiterator.h \
+		/opt/aarch64-qt/include/QtCore/qhashfunctions.h \
+		/opt/aarch64-qt/include/QtCore/qpair.h \
+		/opt/aarch64-qt/include/QtCore/qbytearraylist.h \
+		/opt/aarch64-qt/include/QtCore/qstringlist.h \
+		/opt/aarch64-qt/include/QtCore/qregexp.h \
+		/opt/aarch64-qt/include/QtCore/qstringmatcher.h \
+		/opt/aarch64-qt/include/QtCore/qcoreevent.h \
+		/opt/aarch64-qt/include/QtCore/qscopedpointer.h \
+		/opt/aarch64-qt/include/QtCore/qmetatype.h \
+		/opt/aarch64-qt/include/QtCore/qvarlengtharray.h \
+		/opt/aarch64-qt/include/QtCore/qcontainerfwd.h \
+		/opt/aarch64-qt/include/QtCore/qobject_impl.h \
+		/opt/aarch64-qt/include/QtCore/qmargins.h \
+		/opt/aarch64-qt/include/QtGui/qpaintdevice.h \
+		/opt/aarch64-qt/include/QtCore/qrect.h \
+		/opt/aarch64-qt/include/QtCore/qsize.h \
+		/opt/aarch64-qt/include/QtCore/qpoint.h \
+		/opt/aarch64-qt/include/QtGui/qpalette.h \
+		/opt/aarch64-qt/include/QtGui/qcolor.h \
+		/opt/aarch64-qt/include/QtGui/qrgb.h \
+		/opt/aarch64-qt/include/QtGui/qrgba64.h \
+		/opt/aarch64-qt/include/QtGui/qbrush.h \
+		/opt/aarch64-qt/include/QtCore/qvector.h \
+		/opt/aarch64-qt/include/QtGui/qmatrix.h \
+		/opt/aarch64-qt/include/QtGui/qpolygon.h \
+		/opt/aarch64-qt/include/QtGui/qregion.h \
+		/opt/aarch64-qt/include/QtCore/qdatastream.h \
+		/opt/aarch64-qt/include/QtCore/qiodevice.h \
+		/opt/aarch64-qt/include/QtCore/qline.h \
+		/opt/aarch64-qt/include/QtGui/qtransform.h \
+		/opt/aarch64-qt/include/QtGui/qpainterpath.h \
+		/opt/aarch64-qt/include/QtGui/qimage.h \
+		/opt/aarch64-qt/include/QtGui/qpixelformat.h \
+		/opt/aarch64-qt/include/QtGui/qpixmap.h \
+		/opt/aarch64-qt/include/QtCore/qsharedpointer.h \
+		/opt/aarch64-qt/include/QtCore/qshareddata.h \
+		/opt/aarch64-qt/include/QtCore/qhash.h \
+		/opt/aarch64-qt/include/QtCore/qsharedpointer_impl.h \
+		/opt/aarch64-qt/include/QtGui/qfont.h \
+		/opt/aarch64-qt/include/QtGui/qfontmetrics.h \
+		/opt/aarch64-qt/include/QtGui/qfontinfo.h \
+		/opt/aarch64-qt/include/QtWidgets/qsizepolicy.h \
+		/opt/aarch64-qt/include/QtGui/qcursor.h \
+		/opt/aarch64-qt/include/QtGui/qkeysequence.h \
+		/opt/aarch64-qt/include/QtGui/qevent.h \
+		/opt/aarch64-qt/include/QtCore/qvariant.h \
+		/opt/aarch64-qt/include/QtCore/qmap.h \
+		/opt/aarch64-qt/include/QtCore/qdebug.h \
+		/opt/aarch64-qt/include/QtCore/qtextstream.h \
+		/opt/aarch64-qt/include/QtCore/qlocale.h \
+		/opt/aarch64-qt/include/QtCore/qset.h \
+		/opt/aarch64-qt/include/QtCore/qcontiguouscache.h \
+		/opt/aarch64-qt/include/QtCore/qurl.h \
+		/opt/aarch64-qt/include/QtCore/qurlquery.h \
+		/opt/aarch64-qt/include/QtCore/qfile.h \
+		/opt/aarch64-qt/include/QtCore/qfiledevice.h \
+		/opt/aarch64-qt/include/QtGui/qvector2d.h \
+		/opt/aarch64-qt/include/QtGui/qtouchdevice.h \
+		/opt/aarch64-qt/include/QtWidgets/qtabwidget.h \
+		/opt/aarch64-qt/include/QtGui/qicon.h \
+		/opt/aarch64-qt/include/QtWidgets/QTableWidget \
+		/opt/aarch64-qt/include/QtWidgets/qtablewidget.h \
+		/opt/aarch64-qt/include/QtWidgets/qtableview.h \
+		/opt/aarch64-qt/include/QtWidgets/qabstractitemview.h \
+		/opt/aarch64-qt/include/QtWidgets/qabstractscrollarea.h \
+		/opt/aarch64-qt/include/QtWidgets/qframe.h \
+		/opt/aarch64-qt/include/QtCore/qabstractitemmodel.h \
+		/opt/aarch64-qt/include/QtCore/qitemselectionmodel.h \
+		/opt/aarch64-qt/include/QtWidgets/qabstractitemdelegate.h \
+		/opt/aarch64-qt/include/QtWidgets/qstyleoption.h \
+		/opt/aarch64-qt/include/QtWidgets/qabstractspinbox.h \
+		/opt/aarch64-qt/include/QtGui/qvalidator.h \
+		/opt/aarch64-qt/include/QtCore/qregularexpression.h \
+		/opt/aarch64-qt/include/QtWidgets/qslider.h \
+		/opt/aarch64-qt/include/QtWidgets/qabstractslider.h \
+		/opt/aarch64-qt/include/QtWidgets/qstyle.h \
+		/opt/aarch64-qt/include/QtWidgets/qtabbar.h \
+		/opt/aarch64-qt/include/QtWidgets/qrubberband.h \
+		moc_predefs.h \
+		/opt/aarch64-qt/bin/moc
+	/opt/aarch64-qt/bin/moc $(DEFINES) --include /bk/work/CandCPPtest/build-02_qtButton-aarch64_qt-Debug/moc_predefs.h -I/opt/aarch64-qt/mkspecs/linux-aarch64-gnu-g++ -I/bk/work/CandCPPtest/02_qtButton -I/opt/aarch64-qt/include -I/opt/aarch64-qt/include/QtWidgets -I/opt/aarch64-qt/include/QtGui -I/opt/aarch64-qt/include/QtCore -I. -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include/c++/5.5.0 -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include/c++/5.5.0/aarch64-linux-gnu -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include/c++/5.5.0/backward -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/lib/gcc/aarch64-linux-gnu/5.5.0/include -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/lib/gcc/aarch64-linux-gnu/5.5.0/include-fixed -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include -I/opt/gcc-linaro-5.5.0-2017.10-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/libc/usr/include ../02_qtButton/tabwidget.h -o moc_tabwidget.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_mainwindow2.h ui_mainwindow3.h ui_mainwindow4.h
+compiler_uic_make_all: ui_mainwindow.h ui_mainwindow2.h ui_mainwindow3.h ui_mainwindow4.h ui_tabwidget.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_mainwindow2.h ui_mainwindow3.h ui_mainwindow4.h
+	-$(DEL_FILE) ui_mainwindow.h ui_mainwindow2.h ui_mainwindow3.h ui_mainwindow4.h ui_tabwidget.h
 ui_mainwindow.h: ../02_qtButton/mainwindow.ui \
 		/opt/aarch64-qt/bin/uic
 	/opt/aarch64-qt/bin/uic ../02_qtButton/mainwindow.ui -o ui_mainwindow.h
@@ -1102,6 +1243,10 @@ ui_mainwindow3.h: ../02_qtButton/mainwindow3.ui \
 ui_mainwindow4.h: ../02_qtButton/mainwindow4.ui \
 		/opt/aarch64-qt/bin/uic
 	/opt/aarch64-qt/bin/uic ../02_qtButton/mainwindow4.ui -o ui_mainwindow4.h
+
+ui_tabwidget.h: ../02_qtButton/tabwidget.ui \
+		/opt/aarch64-qt/bin/uic
+	/opt/aarch64-qt/bin/uic ../02_qtButton/tabwidget.ui -o ui_tabwidget.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -1261,6 +1406,9 @@ main.o: ../02_qtButton/main.cpp ../02_qtButton/mainwindow.h \
 		/opt/aarch64-qt/include/QtWidgets/QGroupBox \
 		/opt/aarch64-qt/include/QtWidgets/qgroupbox.h \
 		/opt/aarch64-qt/include/QtWidgets/QVBoxLayout \
+		../02_qtButton/tabwidget.h \
+		/opt/aarch64-qt/include/QtWidgets/QTableWidget \
+		/opt/aarch64-qt/include/QtWidgets/qtablewidget.h \
 		/opt/aarch64-qt/include/QtWidgets/QApplication \
 		/opt/aarch64-qt/include/QtWidgets/qapplication.h \
 		/opt/aarch64-qt/include/QtCore/qcoreapplication.h \
@@ -1418,6 +1566,9 @@ mainwindow.o: ../02_qtButton/mainwindow.cpp ../02_qtButton/mainwindow.h \
 		/opt/aarch64-qt/include/QtWidgets/QGroupBox \
 		/opt/aarch64-qt/include/QtWidgets/qgroupbox.h \
 		/opt/aarch64-qt/include/QtWidgets/QVBoxLayout \
+		../02_qtButton/tabwidget.h \
+		/opt/aarch64-qt/include/QtWidgets/QTableWidget \
+		/opt/aarch64-qt/include/QtWidgets/qtablewidget.h \
 		ui_mainwindow.h \
 		/opt/aarch64-qt/include/QtCore/QVariant \
 		/opt/aarch64-qt/include/QtWidgets/QApplication \
@@ -1814,13 +1965,164 @@ mainwindow4.o: ../02_qtButton/mainwindow4.cpp ../02_qtButton/mainwindow4.h \
 		/opt/aarch64-qt/include/QtWidgets/QGroupBox \
 		/opt/aarch64-qt/include/QtWidgets/qgroupbox.h \
 		/opt/aarch64-qt/include/QtWidgets/qframe.h \
+		/opt/aarch64-qt/include/QtWidgets/QPushButton \
+		/opt/aarch64-qt/include/QtWidgets/qpushbutton.h \
+		/opt/aarch64-qt/include/QtWidgets/qabstractbutton.h \
 		/opt/aarch64-qt/include/QtWidgets/QVBoxLayout \
 		/opt/aarch64-qt/include/QtWidgets/qboxlayout.h \
 		/opt/aarch64-qt/include/QtWidgets/qlayout.h \
 		/opt/aarch64-qt/include/QtWidgets/qlayoutitem.h \
 		/opt/aarch64-qt/include/QtWidgets/qgridlayout.h \
-		ui_mainwindow4.h
+		ui_mainwindow4.h \
+		/opt/aarch64-qt/include/QtCore/QVariant \
+		/opt/aarch64-qt/include/QtWidgets/QApplication \
+		/opt/aarch64-qt/include/QtWidgets/qapplication.h \
+		/opt/aarch64-qt/include/QtCore/qcoreapplication.h \
+		/opt/aarch64-qt/include/QtCore/qeventloop.h \
+		/opt/aarch64-qt/include/QtWidgets/qdesktopwidget.h \
+		/opt/aarch64-qt/include/QtGui/qguiapplication.h \
+		/opt/aarch64-qt/include/QtGui/qinputmethod.h \
+		/opt/aarch64-qt/include/QtWidgets/QMenuBar \
+		/opt/aarch64-qt/include/QtWidgets/qmenubar.h \
+		/opt/aarch64-qt/include/QtWidgets/qmenu.h \
+		/opt/aarch64-qt/include/QtWidgets/qaction.h \
+		/opt/aarch64-qt/include/QtWidgets/qactiongroup.h \
+		/opt/aarch64-qt/include/QtWidgets/QStatusBar \
+		/opt/aarch64-qt/include/QtWidgets/qstatusbar.h \
+		/opt/aarch64-qt/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow4.o ../02_qtButton/mainwindow4.cpp
+
+tabwidget.o: ../02_qtButton/tabwidget.cpp ../02_qtButton/tabwidget.h \
+		/opt/aarch64-qt/include/QtWidgets/QMainWindow \
+		/opt/aarch64-qt/include/QtWidgets/qmainwindow.h \
+		/opt/aarch64-qt/include/QtWidgets/qtwidgetsglobal.h \
+		/opt/aarch64-qt/include/QtGui/qtguiglobal.h \
+		/opt/aarch64-qt/include/QtCore/qglobal.h \
+		/opt/aarch64-qt/include/QtCore/qconfig-bootstrapped.h \
+		/opt/aarch64-qt/include/QtCore/qconfig.h \
+		/opt/aarch64-qt/include/QtCore/qtcore-config.h \
+		/opt/aarch64-qt/include/QtCore/qsystemdetection.h \
+		/opt/aarch64-qt/include/QtCore/qprocessordetection.h \
+		/opt/aarch64-qt/include/QtCore/qcompilerdetection.h \
+		/opt/aarch64-qt/include/QtCore/qtypeinfo.h \
+		/opt/aarch64-qt/include/QtCore/qsysinfo.h \
+		/opt/aarch64-qt/include/QtCore/qlogging.h \
+		/opt/aarch64-qt/include/QtCore/qflags.h \
+		/opt/aarch64-qt/include/QtCore/qatomic.h \
+		/opt/aarch64-qt/include/QtCore/qbasicatomic.h \
+		/opt/aarch64-qt/include/QtCore/qatomic_bootstrap.h \
+		/opt/aarch64-qt/include/QtCore/qgenericatomic.h \
+		/opt/aarch64-qt/include/QtCore/qatomic_cxx11.h \
+		/opt/aarch64-qt/include/QtCore/qatomic_msvc.h \
+		/opt/aarch64-qt/include/QtCore/qglobalstatic.h \
+		/opt/aarch64-qt/include/QtCore/qmutex.h \
+		/opt/aarch64-qt/include/QtCore/qnumeric.h \
+		/opt/aarch64-qt/include/QtCore/qversiontagging.h \
+		/opt/aarch64-qt/include/QtGui/qtgui-config.h \
+		/opt/aarch64-qt/include/QtWidgets/qtwidgets-config.h \
+		/opt/aarch64-qt/include/QtWidgets/qwidget.h \
+		/opt/aarch64-qt/include/QtGui/qwindowdefs.h \
+		/opt/aarch64-qt/include/QtCore/qobjectdefs.h \
+		/opt/aarch64-qt/include/QtCore/qnamespace.h \
+		/opt/aarch64-qt/include/QtCore/qobjectdefs_impl.h \
+		/opt/aarch64-qt/include/QtGui/qwindowdefs_win.h \
+		/opt/aarch64-qt/include/QtCore/qobject.h \
+		/opt/aarch64-qt/include/QtCore/qstring.h \
+		/opt/aarch64-qt/include/QtCore/qchar.h \
+		/opt/aarch64-qt/include/QtCore/qbytearray.h \
+		/opt/aarch64-qt/include/QtCore/qrefcount.h \
+		/opt/aarch64-qt/include/QtCore/qarraydata.h \
+		/opt/aarch64-qt/include/QtCore/qstringliteral.h \
+		/opt/aarch64-qt/include/QtCore/qstringalgorithms.h \
+		/opt/aarch64-qt/include/QtCore/qstringview.h \
+		/opt/aarch64-qt/include/QtCore/qstringbuilder.h \
+		/opt/aarch64-qt/include/QtCore/qlist.h \
+		/opt/aarch64-qt/include/QtCore/qalgorithms.h \
+		/opt/aarch64-qt/include/QtCore/qiterator.h \
+		/opt/aarch64-qt/include/QtCore/qhashfunctions.h \
+		/opt/aarch64-qt/include/QtCore/qpair.h \
+		/opt/aarch64-qt/include/QtCore/qbytearraylist.h \
+		/opt/aarch64-qt/include/QtCore/qstringlist.h \
+		/opt/aarch64-qt/include/QtCore/qregexp.h \
+		/opt/aarch64-qt/include/QtCore/qstringmatcher.h \
+		/opt/aarch64-qt/include/QtCore/qcoreevent.h \
+		/opt/aarch64-qt/include/QtCore/qscopedpointer.h \
+		/opt/aarch64-qt/include/QtCore/qmetatype.h \
+		/opt/aarch64-qt/include/QtCore/qvarlengtharray.h \
+		/opt/aarch64-qt/include/QtCore/qcontainerfwd.h \
+		/opt/aarch64-qt/include/QtCore/qobject_impl.h \
+		/opt/aarch64-qt/include/QtCore/qmargins.h \
+		/opt/aarch64-qt/include/QtGui/qpaintdevice.h \
+		/opt/aarch64-qt/include/QtCore/qrect.h \
+		/opt/aarch64-qt/include/QtCore/qsize.h \
+		/opt/aarch64-qt/include/QtCore/qpoint.h \
+		/opt/aarch64-qt/include/QtGui/qpalette.h \
+		/opt/aarch64-qt/include/QtGui/qcolor.h \
+		/opt/aarch64-qt/include/QtGui/qrgb.h \
+		/opt/aarch64-qt/include/QtGui/qrgba64.h \
+		/opt/aarch64-qt/include/QtGui/qbrush.h \
+		/opt/aarch64-qt/include/QtCore/qvector.h \
+		/opt/aarch64-qt/include/QtGui/qmatrix.h \
+		/opt/aarch64-qt/include/QtGui/qpolygon.h \
+		/opt/aarch64-qt/include/QtGui/qregion.h \
+		/opt/aarch64-qt/include/QtCore/qdatastream.h \
+		/opt/aarch64-qt/include/QtCore/qiodevice.h \
+		/opt/aarch64-qt/include/QtCore/qline.h \
+		/opt/aarch64-qt/include/QtGui/qtransform.h \
+		/opt/aarch64-qt/include/QtGui/qpainterpath.h \
+		/opt/aarch64-qt/include/QtGui/qimage.h \
+		/opt/aarch64-qt/include/QtGui/qpixelformat.h \
+		/opt/aarch64-qt/include/QtGui/qpixmap.h \
+		/opt/aarch64-qt/include/QtCore/qsharedpointer.h \
+		/opt/aarch64-qt/include/QtCore/qshareddata.h \
+		/opt/aarch64-qt/include/QtCore/qhash.h \
+		/opt/aarch64-qt/include/QtCore/qsharedpointer_impl.h \
+		/opt/aarch64-qt/include/QtGui/qfont.h \
+		/opt/aarch64-qt/include/QtGui/qfontmetrics.h \
+		/opt/aarch64-qt/include/QtGui/qfontinfo.h \
+		/opt/aarch64-qt/include/QtWidgets/qsizepolicy.h \
+		/opt/aarch64-qt/include/QtGui/qcursor.h \
+		/opt/aarch64-qt/include/QtGui/qkeysequence.h \
+		/opt/aarch64-qt/include/QtGui/qevent.h \
+		/opt/aarch64-qt/include/QtCore/qvariant.h \
+		/opt/aarch64-qt/include/QtCore/qmap.h \
+		/opt/aarch64-qt/include/QtCore/qdebug.h \
+		/opt/aarch64-qt/include/QtCore/qtextstream.h \
+		/opt/aarch64-qt/include/QtCore/qlocale.h \
+		/opt/aarch64-qt/include/QtCore/qset.h \
+		/opt/aarch64-qt/include/QtCore/qcontiguouscache.h \
+		/opt/aarch64-qt/include/QtCore/qurl.h \
+		/opt/aarch64-qt/include/QtCore/qurlquery.h \
+		/opt/aarch64-qt/include/QtCore/qfile.h \
+		/opt/aarch64-qt/include/QtCore/qfiledevice.h \
+		/opt/aarch64-qt/include/QtGui/qvector2d.h \
+		/opt/aarch64-qt/include/QtGui/qtouchdevice.h \
+		/opt/aarch64-qt/include/QtWidgets/qtabwidget.h \
+		/opt/aarch64-qt/include/QtGui/qicon.h \
+		/opt/aarch64-qt/include/QtWidgets/QTableWidget \
+		/opt/aarch64-qt/include/QtWidgets/qtablewidget.h \
+		/opt/aarch64-qt/include/QtWidgets/qtableview.h \
+		/opt/aarch64-qt/include/QtWidgets/qabstractitemview.h \
+		/opt/aarch64-qt/include/QtWidgets/qabstractscrollarea.h \
+		/opt/aarch64-qt/include/QtWidgets/qframe.h \
+		/opt/aarch64-qt/include/QtCore/qabstractitemmodel.h \
+		/opt/aarch64-qt/include/QtCore/qitemselectionmodel.h \
+		/opt/aarch64-qt/include/QtWidgets/qabstractitemdelegate.h \
+		/opt/aarch64-qt/include/QtWidgets/qstyleoption.h \
+		/opt/aarch64-qt/include/QtWidgets/qabstractspinbox.h \
+		/opt/aarch64-qt/include/QtGui/qvalidator.h \
+		/opt/aarch64-qt/include/QtCore/qregularexpression.h \
+		/opt/aarch64-qt/include/QtWidgets/qslider.h \
+		/opt/aarch64-qt/include/QtWidgets/qabstractslider.h \
+		/opt/aarch64-qt/include/QtWidgets/qstyle.h \
+		/opt/aarch64-qt/include/QtWidgets/qtabbar.h \
+		/opt/aarch64-qt/include/QtWidgets/qrubberband.h \
+		ui_tabwidget.h \
+		/opt/aarch64-qt/include/QtWidgets/QWidget \
+		/opt/aarch64-qt/include/QtWidgets/QPushButton \
+		/opt/aarch64-qt/include/QtWidgets/qpushbutton.h \
+		/opt/aarch64-qt/include/QtWidgets/qabstractbutton.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tabwidget.o ../02_qtButton/tabwidget.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
@@ -1833,6 +2135,9 @@ moc_mainwindow3.o: moc_mainwindow3.cpp
 
 moc_mainwindow4.o: moc_mainwindow4.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow4.o moc_mainwindow4.cpp
+
+moc_tabwidget.o: moc_tabwidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_tabwidget.o moc_tabwidget.cpp
 
 ####### Install
 

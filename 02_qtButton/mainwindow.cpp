@@ -57,10 +57,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(glBtn, SIGNAL(clicked()), this, SLOT(openW()));
 
     gbBtn = new QPushButton(this);
-    gbBtn->setText("open w3");
+    gbBtn->setText("open w4");
     gbBtn->setGeometry(QRect(300,400,200,50));
     connect(gbBtn, SIGNAL(clicked()), this, SLOT(openW()));
 
+    twBtn = new QPushButton(this);
+    twBtn->setText("open w5");
+    twBtn->setGeometry(QRect(300,450,200,50));
+    connect(twBtn, SIGNAL(clicked()), this, SLOT(openW()));
 }
 
 MainWindow::~MainWindow()
@@ -76,6 +80,8 @@ void MainWindow::openW()
        w3.show();
    else if(sender() == gbBtn)
        w4.show();
+   else if(sender() == twBtn)
+       w5.show();
 }
 
 
