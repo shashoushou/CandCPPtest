@@ -4,16 +4,15 @@
 #include <QMainWindow>
 #include <QListView>
 #include <QStringListModel>
-
+#include <QPushButton>
 #include <QTreeView>
 #include <QStandardItemModel>
 
 #include <QTableView>
 
-#include <QHBoxLayout>
-#include <QPushButton>
-#include <QWidget>
-#include <QGridLayout>
+
+#include "mainwindow2.h"
+#include "mainwindow3.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -38,18 +37,17 @@ private:
     QTableView *tableView;
     QStandardItemModel *model3;
 
-    QHBoxLayout *hboxLayout;
-    QPushButton *button1;
-    QPushButton *button2;
-    QPushButton *button3;
-    QWidget *widget;
+    QPushButton *hlBtn;
+    MainWindow2 w2;
 
-    QGridLayout *gridLayout;
-    QPushButton *button4;
-    QPushButton *button5;
-    QPushButton *button6;
-    QWidget *widget2;
+    QPushButton *glBtn;
+    MainWindow3 w3;
 
+
+private slots:
+    void openW2();
+    void openW3();
+    void openW();
 
 };
 #endif // MAINWINDOW_H

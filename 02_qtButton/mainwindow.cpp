@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     treeView->setModel(model2);
 
     tableView = new QTableView(this);
-    tableView->setGeometry(QRect(200,50,310,200));
+    tableView->setGeometry(QRect(300,50,310,200));
     model3 = new QStandardItemModel();
     model3->setHorizontalHeaderItem(0, new QStandardItem("math"));
     model3->setHorizontalHeaderItem(1, new QStandardItem("eng"));
@@ -46,32 +46,15 @@ MainWindow::MainWindow(QWidget *parent)
     model3->setItem(1,2,new QStandardItem("geo B"));
     tableView->setModel(model3);
 
-    hboxLayout = new QHBoxLayout();
-    button1 = new QPushButton("btn 1");
-    button2 = new QPushButton("btn 2");
-    button3 = new QPushButton("btn 3");
-    hboxLayout->addWidget(button1);
-    hboxLayout->addWidget(button2);
-    hboxLayout->addWidget(button3);
-    hboxLayout->setSpacing(60);
-    widget = new QWidget();
-    widget->setLayout(hboxLayout);
-    this->setCentralWidget(widget);
+    hlBtn = new QPushButton(this);
+    hlBtn->setText("open w2");
+    hlBtn->setGeometry(QRect(300,300,200,50));
+    connect(hlBtn, SIGNAL(clicked()), this, SLOT(openW()));
 
-    gridLayout= new QGridLayout;
-    button4 = new QPushButton("btn 4");
-    button5 = new QPushButton("btn 5");
-    button6 = new QPushButton("btn 6");
-    hboxLayout->addWidget(button4);
-    hboxLayout->addWidget(button5);
-    hboxLayout->addWidget(button6);
-    gridLayout->addWidget(button4, 0, 0, 1, 1);
-    gridLayout->addWidget(button5, 0, 1, 1, 1);
-    gridLayout->addWidget(button6, 1, 0, 1, 1);
-    widget2 = new QWidget();
-    widget2->setLayout(gridLayout);
-    this->setCentralWidget(widget2);
-
+    glBtn = new QPushButton(this);
+    glBtn->setText("open w3");
+    glBtn->setGeometry(QRect(300,350,200,50));
+    connect(glBtn, SIGNAL(clicked()), this, SLOT(openW()));
 
 }
 
@@ -79,4 +62,23 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::openW2()
+{
+    w2.show();
+}
+
+void MainWindow::openW3()
+{
+    w3.show();
+}
+
+void MainWindow::openW()
+{
+   if(sender() == hlBtn)
+       w2.show();
+   else if(sender() == glBtn)
+       w3.show();
+}
+
 
