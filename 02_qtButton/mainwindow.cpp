@@ -56,21 +56,16 @@ MainWindow::MainWindow(QWidget *parent)
     glBtn->setGeometry(QRect(300,350,200,50));
     connect(glBtn, SIGNAL(clicked()), this, SLOT(openW()));
 
+    gbBtn = new QPushButton(this);
+    gbBtn->setText("open w3");
+    gbBtn->setGeometry(QRect(300,400,200,50));
+    connect(gbBtn, SIGNAL(clicked()), this, SLOT(openW()));
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::openW2()
-{
-    w2.show();
-}
-
-void MainWindow::openW3()
-{
-    w3.show();
 }
 
 void MainWindow::openW()
@@ -79,6 +74,8 @@ void MainWindow::openW()
        w2.show();
    else if(sender() == glBtn)
        w3.show();
+   else if(sender() == gbBtn)
+       w4.show();
 }
 
 

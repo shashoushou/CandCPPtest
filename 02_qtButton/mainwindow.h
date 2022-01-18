@@ -7,12 +7,11 @@
 #include <QPushButton>
 #include <QTreeView>
 #include <QStandardItemModel>
-
 #include <QTableView>
-
 
 #include "mainwindow2.h"
 #include "mainwindow3.h"
+#include "mainwindow4.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -43,10 +42,10 @@ private:
     QPushButton *glBtn;
     MainWindow3 w3;
 
+    QPushButton *gbBtn;
+    MainWindow4 w4;
 
 private slots:
-    void openW2();
-    void openW3();
     void openW();
 
 };
