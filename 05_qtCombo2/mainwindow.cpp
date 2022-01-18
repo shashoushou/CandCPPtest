@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
     button->setText("Browser");
     connect(button, SIGNAL(clicked()), this, SLOT(showFiles()));
 
+
+
     btn = new QPushButton(this);
     btn->setGeometry(QRect(500, 80, 180, 25));
     btn->setText("select Color:");
@@ -25,6 +27,17 @@ MainWindow::MainWindow(QWidget *parent)
     label = new QLabel(this);
     label->setGeometry(QRect(500, 50, 100, 25));
     label->setText("Font Color");
+
+
+
+    bar = new QProgressBar(this);
+    bar ->setGeometry(QRect(500, 300, 200, 20));
+    bar->setRange(0, 100000-1);
+    bar->setValue(0);
+    btn2 = new QPushButton(this);
+    btn2->setGeometry(QRect(500, 350, 80, 25));
+    btn2->setText("Start");
+    connect(btn2, SIGNAL(clicked()), this, SLOT(startBar()));
 
 }
 
@@ -46,6 +59,14 @@ void MainWindow::editText()
     QPalette p = palette();
     p.setColor(QPalette::WindowText, QColor(color));
     label->setPalette(p);
+}
+
+void MainWindow::startBar()
+{
+    for(int i = 0 ; i <100000; i++){
+        bar->setValue(i);
+    }
+    btn2->setText("stop");
 }
 
 

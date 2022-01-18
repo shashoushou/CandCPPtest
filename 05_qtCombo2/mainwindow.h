@@ -4,8 +4,8 @@
 #include <QMainWindow>
 #include <QLineEdit>
 #include <QPushButton>
-
 #include <QLabel>
+#include <QProgressBar>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,10 +27,14 @@ private:
     QPushButton *btn;
     QLabel *label;
 
+    QPushButton *btn2;
+    QProgressBar *bar;
+
 
 private slots:
     void showFiles();
     void editText();
+    void startBar();
 
 };
 #endif // MAINWINDOW_H
