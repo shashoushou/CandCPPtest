@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QProgressBar>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,11 +31,14 @@ private:
     QPushButton *btn2;
     QProgressBar *bar;
 
+    QLabel *label2;
+    QTimer *timer;
+
 
 private slots:
     void showFiles();
     void editText();
     void startBar();
-
+    void timerTime();
 };
 #endif // MAINWINDOW_H

@@ -3,6 +3,7 @@
 
 #include <QFileDialog>
 #include <QColorDialog>
+#include <QDateTime>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -20,24 +21,33 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     btn = new QPushButton(this);
-    btn->setGeometry(QRect(500, 80, 180, 25));
+    btn->setGeometry(QRect(200, 100, 180, 25));
     btn->setText("select Color:");
     connect(btn, SIGNAL(clicked()), this, SLOT(editText()));
 
     label = new QLabel(this);
-    label->setGeometry(QRect(500, 50, 100, 25));
+    label->setGeometry(QRect(50, 100, 100, 25));
     label->setText("Font Color");
 
 
 
     bar = new QProgressBar(this);
-    bar ->setGeometry(QRect(500, 300, 200, 20));
+    bar ->setGeometry(QRect(50, 150, 200, 20));
     bar->setRange(0, 100000-1);
     bar->setValue(0);
     btn2 = new QPushButton(this);
-    btn2->setGeometry(QRect(500, 350, 80, 25));
+    btn2->setGeometry(QRect(50, 200, 80, 25));
     btn2->setText("Start");
     connect(btn2, SIGNAL(clicked()), this, SLOT(startBar()));
+
+
+    label2 = new QLabel(this);
+    label2->setGeometry(QRect(400, 50, 200, 25));
+
+    timer = new QTimer;
+    connect(timer, SIGNAL(timeout()), this, SLOT(timerTime()));
+
+    timer->start(1000);
 
 }
 
@@ -67,6 +77,12 @@ void MainWindow::startBar()
         bar->setValue(i);
     }
     btn2->setText("stop");
+}
+
+void MainWindow::timerTime()
+{
+    QDateTime sysTime = QDateTime::currentDateTime();
+    label2->setText(sysTime.toString());
 }
 
 
