@@ -22,9 +22,14 @@ private:
     QLineEdit *edit;
     QPushButton *button;
 
+    QPushButton *btn2;
+    QLineEdit *newFilename;
+    QLineEdit *newFileContent;
+
 
 private slots:
     void createFolder();
+    void createFile();
 
 };
 #endif // MAINWINDOW_H
