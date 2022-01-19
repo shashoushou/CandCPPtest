@@ -54,6 +54,20 @@ MainWindow::MainWindow(QWidget *parent)
     saveBt->setText("Save");
     connect(saveBt, SIGNAL(clicked()), this, SLOT(saveFile()));
 
+    // delete file
+    filePath = new QLineEdit(this);
+    filePath->setGeometry(QRect(50, 400, 200, 25));
+
+    broBtn = new QPushButton(this);
+    broBtn->setText("browser ");
+    broBtn->setGeometry(QRect(300, 400, 100, 25));
+    connect(broBtn, SIGNAL(clicked()), this, SLOT(browDelFile()));
+
+    delBtn = new QPushButton(this);
+    delBtn->setText("delete");
+    delBtn->setGeometry(QRect(300, 450, 100, 25));
+    connect(delBtn, SIGNAL(clicked()), this, SLOT(deleteFile()));
+
 }
 
 MainWindow::~MainWindow()
@@ -119,5 +133,16 @@ void MainWindow::browseFile()
         content->setPlainText(ts.readAll());
     }
     file.close();
+}
+
+void MainWindow::browDelFile()
+{
+    QString str = QFileDialog::getOpenFileName(this, "open file", "/", "text file(*.txt)::All file(*.*)");
+    filePath->setText((str.toUtf8()));
+}
+
+void MainWindow::deleteFile()
+{
+    QFile::remove(filePath->text());
 }
 

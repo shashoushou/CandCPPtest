@@ -32,11 +32,16 @@ private:
     QTextEdit *mEdit;
     QTextEdit *content;
 
+    QLineEdit *filePath;
+    QPushButton *broBtn;
+    QPushButton *delBtn;
+
 private slots:
     void createFolder();
     void createFile();
     void saveFile();
     void browseFile();
-
+    void browDelFile();
+    void deleteFile();
 };
 #endif // MAINWINDOW_H
