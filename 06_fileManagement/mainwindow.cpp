@@ -3,21 +3,26 @@
 #include <QDir>
 #include <QFile>
 #include <QMessageBox>
+#include <QFileDialog>
+#include <QTextStream>
+#include <QTextCodec>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    // Create Dir
     edit = new QLineEdit(this);
     edit->setGeometry(QRect(50,50,200,26));
     edit->setText("/home/icnexus");
 
     button = new QPushButton(this);
     button->setGeometry(QRect(280,50,80,25));
-    button->setText("Create");
+    button->setText("Create dir");
     connect(button, SIGNAL(clicked()), this, SLOT(createFolder()));
 
+    // Create new file 
     newFilename = new QLineEdit(this);
     newFilename->setGeometry(QRect(50,100, 200,25));
     newFilename->setText("/home/icnexus/test.txt");
@@ -30,6 +35,25 @@ MainWindow::MainWindow(QWidget *parent)
     btn2->setGeometry(QRect(270,100,180,25));
     btn2->setText("create file");
     connect(btn2, SIGNAL(clicked()), this, SLOT(createFile()));
+    
+    
+    // Modify file
+    mEdit = new QTextEdit(this);
+    mEdit->setGeometry(QRect(50,200,240,26));
+
+    browseBt = new QPushButton(this);
+    browseBt->setGeometry(QRect(300,200,100,25));
+    browseBt->setText("select File");
+    connect(browseBt, SIGNAL(clicked()), this, SLOT(browseFile()));
+
+    content = new QTextEdit(this);
+    content->setGeometry(QRect(50, 250, 200, 150));
+
+    saveBt = new QPushButton(this);
+    saveBt->setGeometry(QRect(300, 250, 100,25));
+    saveBt->setText("Save");
+    connect(saveBt, SIGNAL(clicked()), this, SLOT(saveFile()));
+
 }
 
 MainWindow::~MainWindow()
@@ -64,6 +88,35 @@ void MainWindow::createFile()
         QByteArray str = newFileContent->text().toUtf8();
         file.write(str);
         QMessageBox::warning(this, "create file", "finished!");
+    }
+    file.close();
+}
+
+void MainWindow::saveFile()
+{
+    QFile file(mEdit->toPlainText());
+    file.open(QIODevice::ReadWrite|QIODevice::Text);
+    QByteArray str = content->toPlainText().toUtf8();
+    file.write(str);
+    QMessageBox::warning(this, "modify docs", "finished!");
+    file.close();
+}
+
+void MainWindow::browseFile()
+{
+    QString str = QFileDialog::getOpenFileName(this, "open file", "/", "text file(*.txt)::C file(*.cpp)::All file(*.*)");
+    mEdit->setText(str.toUtf8());
+    if(mEdit->toPlainText().isEmpty()) {
+        return;
+    }
+    QFile file(mEdit->toPlainText());
+    if(!file.open(QIODevice::ReadOnly|QIODevice::Text)) {
+        QMessageBox::warning(this, "open file", "failed!");
+        return;
+    }
+    QTextStream ts(&file);
+    while(!ts.atEnd()) {
+        content->setPlainText(ts.readAll());
     }
     file.close();
 }
