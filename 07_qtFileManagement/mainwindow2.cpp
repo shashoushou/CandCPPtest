@@ -1,12 +1,11 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "mainwindow2.h"
+#include "ui_mainwindow2.h"
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow2::MainWindow2(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow2)
 {
     ui->setupUi(this);
-    // Write INI
     filePathL = new QLabel;
     filePathL->setText("ini file path");
     filePath = new QLineEdit;
@@ -25,11 +24,11 @@ MainWindow::MainWindow(QWidget *parent)
     valL = new QLabel;
     valL->setText("Value");
     valEdit = new QLineEdit;
-    valEdit->setText("192.168.1.1");
+//    valEdit->setText("192.168.1.1");
 
-    writeBtn = new QPushButton;
-    writeBtn->setText("write setting");
-    connect(writeBtn, SIGNAL(clicked()), this, SLOT(writeFile()));
+    readBtn = new QPushButton;
+    readBtn->setText("Read setting");
+    connect(readBtn, SIGNAL(clicked()), this, SLOT(readFile()));
 
     gLayout = new QGridLayout;
     gLayout->addWidget(filePathL, 0, 0, 1, 1);
@@ -40,22 +39,23 @@ MainWindow::MainWindow(QWidget *parent)
     gLayout->addWidget(keyEdit, 2, 1, 1, 1);
     gLayout->addWidget(valL, 2, 3, 1, 1);
     gLayout->addWidget(valEdit, 2, 4, 1, 1);
-    gLayout->addWidget(writeBtn, 3, 4, 1, 1);
+    gLayout->addWidget(readBtn, 3, 4, 1, 1);
 
     widget = new QWidget();
     widget->setLayout(gLayout);
     this->setCentralWidget(widget);
 }
 
-MainWindow::~MainWindow()
+MainWindow2::~MainWindow2()
 {
     delete ui;
+
 }
 
-void MainWindow::writeFile()
+void MainWindow2::readFile()
 {
-    writeIni = new QSettings(filePath->text(), QSettings::IniFormat);
-    writeIni->setValue(nodeEdit->text()+"/"+keyEdit->text(),valEdit->text());
-    delete writeIni;
+    readIni = new QSettings(filePath->text(), QSettings::IniFormat);
+    QString ipResult = readIni->value(nodeEdit->text()+"/"+keyEdit->text()).toString();
+    valEdit->setText(ipResult);
+    delete readIni;
 }
-
