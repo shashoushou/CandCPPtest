@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QPainter>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -30,10 +31,24 @@ MainWindow::MainWindow(QWidget *parent)
     QGraphicsView *view = new QGraphicsView(scene);
     this->setCentralWidget(view);
 
+    QLabel *label = new QLabel(this);
+    label->setGeometry(QRect(50,50,97,51));
+    QMovie *movie = new QMovie("./");
+    QTimer::singleShot(3*1000, label, SLOT(close()));
+
+    label->setMovie(movie);
+    movie->start();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::paintEvent(QPaintDevice *)
+{
+    QPixmap image("./dog.jpeg");
+    QPainter painter(this);
+    painter.drawPixmap(20,20,200,257,image);
 }
 
