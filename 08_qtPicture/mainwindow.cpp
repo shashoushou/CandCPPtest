@@ -12,9 +12,10 @@ MainWindow::MainWindow(QWidget *parent)
     scene->setBackgroundBrush(QColor(0, 255, 255, 127));
     QFont font("black", 60);
     scene->addSimpleText("picture", font);
-    QGraphicsView *view = new QGraphicsView(scene);
-    this->setCentralWidget(view);
+//    QGraphicsView *view = new QGraphicsView(scene);
+//    this->setCentralWidget(view);
 
+    // Paint Line
     QPen pen;
     pen.setStyle(Qt::DashDotLine);
     pen.setWidth(5);
@@ -22,8 +23,12 @@ MainWindow::MainWindow(QWidget *parent)
     pen.setCapStyle(Qt::RoundCap);
     pen.setJoinStyle(Qt::RoundJoin);
     scene->addLine(20,130,200,30,pen);
-    QGraphicsView *view2 = new QGraphicsView(scene);
-    this->setCentralWidget(view2);
+
+    // circle
+    scene->addEllipse(150,50,100,120);
+
+    QGraphicsView *view = new QGraphicsView(scene);
+    this->setCentralWidget(view);
 
 }
 
