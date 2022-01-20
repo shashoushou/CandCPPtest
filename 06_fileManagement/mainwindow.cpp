@@ -65,8 +65,25 @@ MainWindow::MainWindow(QWidget *parent)
 
     delBtn = new QPushButton(this);
     delBtn->setText("delete");
-    delBtn->setGeometry(QRect(300, 450, 100, 25));
+    delBtn->setGeometry(QRect(300, 430, 100, 25));
     connect(delBtn, SIGNAL(clicked()), this, SLOT(deleteFile()));
+
+    //change file name
+    filePath2 = new QLineEdit(this);
+    filePath2->setGeometry(QRect(50, 450, 200, 25));
+    broBtn2 = new QPushButton(this);
+    broBtn2->setGeometry(QRect(300, 450, 100, 25));
+    broBtn2->setText("Browser ");
+    connect(broBtn2, SIGNAL(clicked()), this, SLOT(browseFile2()));
+
+    newName = new QLineEdit(this);
+    newName->setGeometry(QRect(50, 500,200,25));
+    newName->setText("newname.txt");
+
+    saveBtn = new QPushButton(this);
+    saveBtn->setGeometry(QRect(300, 500, 100, 25));
+    saveBtn->setText("Save");
+    connect(saveBtn, SIGNAL(clicked()), this, SLOT(saveFile2()));
 
 }
 
@@ -144,5 +161,25 @@ void MainWindow::browDelFile()
 void MainWindow::deleteFile()
 {
     QFile::remove(filePath->text());
+}
+
+void MainWindow::browseFile2()
+{
+
+    QString str = QFileDialog::getOpenFileName(this, "open file", "/", "text file(*.txt)::All file(*.*)");
+    filePath2->setText((str.toUtf8()));
+}
+
+void MainWindow::saveFile2()
+{
+    QFileInfo file(filePath2->text());
+    QString path = file.absolutePath();
+    bool x = QFile::rename(filePath2->text(), path+"/"+newName->text());
+    if(x) {
+        QMessageBox::warning(this, "change name", "finished!");
+    } else {
+        QMessageBox::warning(this, "change name", "failed!");
+    }
+
 }
 

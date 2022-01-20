@@ -36,6 +36,11 @@ private:
     QPushButton *broBtn;
     QPushButton *delBtn;
 
+    QLineEdit *filePath2;
+    QLineEdit *newName;
+    QPushButton *broBtn2;
+    QPushButton *saveBtn;
+
 private slots:
     void createFolder();
     void createFile();
@@ -43,5 +48,7 @@ private slots:
     void browseFile();
     void browDelFile();
     void deleteFile();
+    void browseFile2();
+    void saveFile2();
 };
 #endif // MAINWINDOW_H
